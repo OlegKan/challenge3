@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">challenge3</string>
+    <string name="empty_message_search">Oops, no beer or pizza near by…</string>
+</resources>

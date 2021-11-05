@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+
+    defaultConfig {
+        applicationId "com.simplaapliko.challenge3"
+
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+
+        versionCode app_version.code
+        versionName app_version.name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation project(':shared')
+
+    implementation deps.kotlin.stdlib
+
+    implementation deps.kotlinx.coroutines.android
+
+    implementation deps.android.browser
+    implementation deps.android.constraintlayout
+    implementation deps.android.livedata
+    implementation deps.android.material
+    implementation deps.android.swiperefreshlayout
+    implementation deps.android.viewmodel
+
+    implementation deps.androidx.fragment_ktx
+
+    implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
+    compileOnly deps.javaxannotation
+
+    implementation deps.hilt.android
+    kapt deps.hilt.compiler
+
+    testImplementation deps.test.junit
+}
+
+kapt {
+    correctErrorTypes true
+}
